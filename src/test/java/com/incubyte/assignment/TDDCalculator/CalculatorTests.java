@@ -37,4 +37,10 @@ public class CalculatorTests {
 		int sum = Calculator.add("1\n2,3");
 		assertEquals(6, sum);
 	}
+	
+	@Test
+	public void changeDelimiterAndAdd() {
+		int sum = Calculator.add("//;\n1;2");
+		assertEquals(3, sum);
+	}
 }
