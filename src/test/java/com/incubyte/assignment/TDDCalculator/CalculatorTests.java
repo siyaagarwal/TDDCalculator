@@ -46,4 +46,10 @@ public class CalculatorTests {
 	public void negativesNotAllowed() throws Exception {
 		Calculator.add("//;\n-1;2");
 	}
+	
+	@Test
+	public void ignoreLargeNums() throws Exception {
+		int sum = Calculator.add("//;\n1001;2");
+		assertEquals(2, sum);
+	}
 }

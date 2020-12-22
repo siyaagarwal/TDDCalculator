@@ -30,7 +30,7 @@ public class Calculator {
 			}
 			
 			for (int i : intArray) {
-				sum = sum + i;
+				sum = i > 1000 ? sum : sum + i;
 			}
 		}
 		return sum;
