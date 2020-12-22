@@ -26,4 +26,15 @@ public class CalculatorTests {
 		assertEquals(3, sum);
 	}
 
+	@Test
+	public void addNNums() {
+		int sum = Calculator.add("1,2,4,6");
+		assertEquals(13, sum);
+	}
+	
+	@Test
+	public void addAndHandleNewLines() {
+		int sum = Calculator.add("1\n2,3");
+		assertEquals(6, sum);
+	}
 }
