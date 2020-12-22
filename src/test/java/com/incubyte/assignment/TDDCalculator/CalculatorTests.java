@@ -52,4 +52,22 @@ public class CalculatorTests {
 		int sum = Calculator.add("//;\n1001;2");
 		assertEquals(2, sum);
 	}
+	
+	@Test
+	public void delimiterAnyLength() throws Exception {
+		int sum = Calculator.add("//[***]\n1***2***3");
+		assertEquals(6, sum);
+	}
+	
+	@Test
+	public void multipleDelimiters() throws Exception {
+		int sum = Calculator.add("//[*][%]\n1*2%3");
+		assertEquals(6, sum);
+	}
+	
+	@Test
+	public void multipleDelimitersOfAnyLength() throws Exception {
+		int sum = Calculator.add("//[***][%]\n1***2%3");
+		assertEquals(6, sum);
+	}
 }

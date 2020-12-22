@@ -3,6 +3,8 @@ package com.incubyte.assignment.TDDCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,10 +14,15 @@ public class Calculator {
 		int sum = 0;
 		if (!StringUtils.isEmpty(numbers)) {
 			String delimiter=",|\\n";
-			if(numbers.startsWith("//")) {
-				String[] parts=numbers.split("\\n",2);
-				numbers=parts[1];
-				delimiter=parts[0].substring(2);
+			if (numbers.startsWith("//")) {
+				String[] parts = numbers.split("\\n", 2);
+				numbers = parts[1];
+				ArrayList<String> delimiters = new ArrayList<>(
+						Arrays.stream(parts[0].substring(2).split("\\[|\\]")).collect(Collectors.toList()));
+				delimiters.removeAll(Arrays.asList("", null));
+				for (String d : delimiters) {
+					delimiter = delimiter + "|" + Pattern.quote(d);
+				}
 			}
 			int[] intArray = Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt).toArray();
 			
